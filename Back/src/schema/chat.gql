@@ -1,0 +1,28 @@
+type Chat {
+    id: ID!
+    name: String
+    messages: [Message]
+    users:[User]
+}
+
+type Message {
+    id: ID!
+    data: String!
+    from: User
+}
+
+input dataChat {
+    name: String
+    users: [ID]
+}
+
+extend type Query {
+    allChat: [Chat]
+    findChat(id: ID,users:[ID]): Chat
+}
+
+extend type Mutation {
+    newChat(name: String!, users:[ID]): Chat!
+    newMessage(id: ID!, user: ID!, data: String!): Chat
+    deleteChat(id: ID!): Chat!
+}

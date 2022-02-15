@@ -1,0 +1,27 @@
+type User {
+        id: ID!
+        first: String!
+        last: String!
+        fullName: String
+        email: String!
+        password: String!
+        chats: [Chat]
+    }
+
+input userInput {
+    first: String
+    last: String
+    email: String
+    password: String
+}
+
+type Query {
+    Ping: String
+    allUsers: [User]
+    user(id: ID, email: String): [User]
+}
+type Mutation {
+    createUser(first: String, last: String, email: String, password: String): User
+    deleteUser(id: ID!): User
+    updateUser(id: ID! input: userInput): User
+}
